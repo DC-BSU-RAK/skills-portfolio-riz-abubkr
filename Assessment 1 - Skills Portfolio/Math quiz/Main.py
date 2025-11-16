@@ -124,7 +124,6 @@ def check_answer():# creating a function named check_answer that checks if the p
     #checking if the answers are correct
     if user_answer == correct_answer:
         score += 3 if attempts == 0 else 1 # user will get 3 points at first try and for second and third try 1 point
-
         feedback_label.config(text="✅ Correct!")# Show "Correct" feedback to the player
         score_label.config(text=f"Score: {score}")# Update the score label on the screen
         generate_question()  # Generate the next question
@@ -138,6 +137,7 @@ def check_answer():# creating a function named check_answer that checks if the p
     lives_label.config(text=f"Lives: {lives}")#Update the lives label on the screen
     if lives <= 0:#if function will check if the lives reached below zero
         game_result = "lost" #set game result to lost
+        show_game_over()#display game over
         return
     feedback_label.config(text="⚠️ No points. Next question.")# display the feedback to the player
     generate_question()#Generate the next question
@@ -177,48 +177,54 @@ def restart_game():# creating a function named restart_game that brings the play
 bg_welcome = ImageTk.PhotoImage(Image.open("Assessment 1 - Skills Portfolio/Math quiz/images/background 1.png.jpeg").resize((800, 600)))
 bg_level   = ImageTk.PhotoImage(Image.open("Assessment 1 - Skills Portfolio/Math quiz/background 3.png.jpeg").resize((800, 600)))
 bg_quiz    = ImageTk.PhotoImage(Image.open("Assessment 1 - Skills Portfolio/Math quiz/images/background 2.png.jpeg").resize((800, 600)))
-bg_gameover = ImageTk.PhotoImage(Image.open("Assessment 1 - Skills Portfolio/Math quiz/images/background 2.png.jpeg").resize((800, 600)))
+bg_gameover = ImageTk.PhotoImage(Image.open("Assessment 1 - Skills Portfolio/Math quiz/background image4.png.jpeg").resize((800, 600)))
+bg_gamewin = ImageTk.PhotoImage(Image.open("Assessment 1 - Skills Portfolio/Math quiz/backgorund image5.png.jpeg").resize((800, 600)))
 
 
 # FRAME 1: WELCOME SCREEN
 frame_welcome = Frame(root, width=800, height=600)#create a frame for the welcome screen with width 800 and height 600
 Label(frame_welcome, image=bg_welcome).place(x=0, y=0, relwidth=1, relheight=1)#adding the background image
-Label(frame_welcome, text="Enter your name:", font=("tahoma", 12), fg="black").place(x=340, y=380)#createn lable called  enter your name
-name_entry = Entry(frame_welcome, font=("tahoma", 12), bg="green")# create an entry box for the player to type their name
+Label(frame_welcome, text="Enter your name:", font=("poppins", 12), fg="black").place(x=340, y=380)#createn lable called  enter your name
+name_entry = Entry(frame_welcome, font=("poppins", 12), bg="green")# create an entry box for the player to type their name
 name_entry.place(x=335, y=410)#position of the entry box
-Button(frame_welcome, text="Start", font=("tahoma", 12), bg="#001111", fg="yellow",command=lambda: switch_to_frame(frame_level)).place(x=390, y=470)# create a Start button that switches to the level selection frame when clicked
+Button(frame_welcome, text="Start", font=("poppins", 12), bg="#0ABBF7", fg="yellow",command=lambda: switch_to_frame(frame_level)).place(x=390, y=470)# create a Start button that switches to the level selection frame when clicked
 frame_welcome.place(x=0, y=0, width=800, height=600)
 
 # FRAME 2: DIFFICULTY SELECTION SCREEN
 
-frame_level = Frame(root, width=800, height=600)#create a frame for the difficulty selecetion screen with width 800 and height  60
-Label(frame_level, image=bg_level).place(x=0, y=0, relwidth=1, relheight=1)#adding the background image
-Button(frame_level, text="Easy", font=("tahoma", 12), bg="#001111", fg="yellow", command=lambda: start_quiz("Easy")).place(x=360, y=330) #create a button for Easy level
-Button(frame_level, text="Moderate", font=("tahoma", 12), bg="#001111", fg="yellow", command=lambda: start_quiz("Moderate")).place(x=360, y=280)# create a button for Moderate level
-Button(frame_level, text="Difficult", font=("tahoma", 12), bg="#001111", fg="yellow", command=lambda: start_quiz("Difficult")).place(x=360, y=230)# create a button for Difficult level
-Button(frame_level, text="Back", font=("tahoma", 12), bg="#001111", fg="yellow", command=lambda: switch_to_frame(frame_welcome)).place(x=360, y=460)# create a Back button to return to the Welcome screen using switch frame function
+frame_level = Frame(root, width=800, height=600)  # create a frame for the difficulty selection screen
+Label(frame_level, image=bg_level).place(x=0, y=0, relwidth=1, relheight=1)  # adding the background image
+# Easy button
+Button(frame_level, text="Easy", font=("poppins", 12), bg="#2E80E5", fg="black", command=lambda: start_quiz("Easy")).place(x=360, y=330)
+# Moderate button (fixed — now starts Moderate)
+Button(frame_level, text="Moderate", font=("poppins", 12), bg="#2E80E5", fg="black",command=lambda: start_quiz("Moderate")).place(x=360, y=280)
+# Difficult button (restored — you deleted it before)
+Button(frame_level, text="Difficult", font=("poppins", 12), bg="#2E80E5", fg="black",command=lambda: start_quiz("Difficult")).place(x=360, y=230)
+# Back button
+Button(frame_level, text="Back", font=("poppins", 12), bg="#2E80E5", fg="black",command=lambda: switch_to_frame(frame_welcome)).place(x=360, y=500)
 frame_level.place(x=0, y=0, width=800, height=600)
+
 
 # FRAME 3: QUIZ SCREEN
 frame_quiz = Frame(root, width=800, height=600)#create a frame for the quiz screen with width 800 and height 60
 Label(frame_quiz, image=bg_quiz).place(x=0, y=0, relwidth=1, relheight=1)#adding the background image
-name_label = Label(frame_quiz, text="", font=("tahoma", 12), bg="#234567", fg="white")#creating  label showing the player's name during quiz
+name_label = Label(frame_quiz, text="", font=("poppins", 12),  fg="black")#creating  label showing the player's name during quiz
 name_label.place(x=130, y=60)#Position of name label
-level_label = Label(frame_quiz, text="", font=("tahoma", 12), bg="#234567", fg="white")# create label showing the chosen difficulty level
+level_label = Label(frame_quiz, text="", font=("poppins", 12),  fg="black")# create label showing the chosen difficulty level
 level_label.place(x=130, y=150)#position of level label
-score_label = Label(frame_quiz, text="Score: 0", font=("tahoma", 12), bg="#234567", fg="white")#create label showing the player's current score
+score_label = Label(frame_quiz, text="Score: 0", font=("poppins", 12),  fg="black")#create label showing the player's current score
 score_label.place(x=130, y=90)#position of score label
-lives_label = Label(frame_quiz, text="Lives: 3", font=("tahoma", 12), bg="#234567", fg="white")#create label showing how many lives are left
+lives_label = Label(frame_quiz, text="Lives: 3", font=("poppins", 12), fg="black")#create label showing how many lives are left
 lives_label.place(x=130, y=120)#position of lives label
-question_label = Label(frame_quiz, text="", font=("tahoma", 14), bg="#234567", fg="white")#create label where the math question is displayed
+question_label = Label(frame_quiz, text="", font=("poppins", 14), bg="#B5B94C", fg="black")#create label where the math question is displayed
 question_label.place(x=340, y=180)#position of question label
-answer_entry = Entry(frame_quiz, font=("tahoma", 12))#creates entry box where player types the answer
+answer_entry = Entry(frame_quiz, font=("poppins", 12))#creates entry box where player types the answer
 answer_entry.place(x=300, y=260)#position of entry box
-submit_button = Button(frame_quiz, text="Submit", font=("tahoma", 12), bg="#001111", fg="yellow", command=check_answer)#create submit button used to check the player's answer
+submit_button = Button(frame_quiz, text="Submit", font=("poppins", 12), bg="#2E80E5", fg="black", command=check_answer)#create submit button used to check the player's answer
 submit_button.place(x=360, y=330)#position of submit button
-feedback_label = Label(frame_quiz, text="", font=("tahoma", 12), fg="black")#creates label used to show feedback messages correct and wrong)
+feedback_label = Label(frame_quiz, text="", font=("poppins", 12), fg="black")#creates label used to show feedback messages correct and wrong)
 feedback_label.place(x=340, y=400)#postion of feedback label
-Button(frame_quiz, text="Back", font=("tahoma", 12), bg="#001111", fg="yellow",command=lambda: switch_to_frame(frame_level)).place(x=360, y=460)#creates back button to return to level selection screen
+Button(frame_quiz, text="Back", font=("poppins", 12), bg="#2E80E5", fg="yellow",command=lambda: switch_to_frame(frame_level)).place(x=360, y=460)#creates back button to return to level selection screen
 frame_quiz.place(x=0, y=0, width=800, height=600)#position of back button
 
 
@@ -226,29 +232,33 @@ frame_quiz.place(x=0, y=0, width=800, height=600)#position of back button
 # FRAME 4: GAME OVER SCREEN
 frame_gameover = Frame(root, width=800, height=600)# create the Game Over frame
 Label(frame_gameover, image=bg_gameover).place(x=0, y=0, relwidth=1, relheight=1)# adding the background image
-Label(frame_gameover, text="Game Over", font=("tahoma", 16), bg="#234567", fg="white").place(x=330, y=260)#displaying the game over text
-Label(frame_gameover, text="Better luck next time!", font=("tahoma", 12), bg="#234567", fg="white").place(x=330, y=300)
-final_score_label = Label(frame_gameover, text="", font=("tahoma", 12), bg="#234567", fg="white")#create final score label
+Label(frame_gameover, text="Better luck next time!", font=("poppins", 12), bg="#B5320A", fg="yellow").place(x=330, y=300)
+final_score_label = Label(frame_gameover, text="", font=("poppins", 12), bg="#B5320A", fg="yellow")#create final score label
 final_score_label.place(x=320, y=180)#postion of final score label
-final_lives_label = Label(frame_gameover, text="", font=("tahoma", 12), bg="#234567", fg="white")#create final lives label
+final_lives_label = Label(frame_gameover, text="", font=("poppins", 12), bg="#B5320A", fg="yellow")#create final lives label
 final_lives_label.place(x=320, y=210)#position of final lives
-lives_over_label = Label(frame_gameover, text="", font=("tahoma", 12), bg="#234567", fg="red", justify="center")#creating lives over label
-lives_over_label.place(x=250, y=240)#position of lives over label
-Button(frame_gameover, text="Play Again", font=("tahoma", 12), bg="#001111", fg="yellow",command=restart_game).place(x=360, y=460)#create play agin button
+lives_over_label = Label(frame_gameover, text="", font=("poppins", 12), bg="#B5320A", fg="white", justify="center")#creating lives over label
+lives_over_label.place(x=320, y=240)#position of lives over label
+Button(frame_gameover, text="Play Again", font=("poppins", 12), bg="#2E80E5", fg="yellow",command=restart_game).place(x=360, y=460)#create play agin button
 frame_gameover.place(x=0, y=0, width=800, height=600)#positon of gameover button
 
 
 # FRAME 5: GAME WIN SCREEN
 frame_gamewin = Frame(root, width=800, height=600)#create game win frame
-Label(frame_gamewin, image=bg_gameover).place(x=0, y=0, relwidth=1, relheight=1)#adding background
-Label(frame_gamewin, text="🎉 Level Complete!", font=("tahoma", 16), bg="#234567", fg="white").place(x=330, y=260)
-Label(frame_gamewin, text="Great job finishing all questions!", font=("tahoma", 12), bg="#234567", fg="white").place(x=330, y=300)#disaply the text
-win_score_label = Label(frame_gamewin, text="", font=("tahoma", 12), bg="#234567", fg="white")#create win score label display the winning score of the player
+Label(frame_gamewin, image=bg_gamewin).place(x=0, y=0, relwidth=1, relheight=1)#adding background
+Label(frame_gamewin, text="🎉 Level Complete!", font=("poppins", 16), bg="#00AE3D", fg="white").place(x=330, y=260)
+Label(frame_gamewin, text="Great job finishing all questions!", font=("poppins", 12), bg="#00AE3D", fg="white").place(x=330, y=300)#disaply the text
+win_score_label = Label(frame_gamewin, text="", font=("poppins", 12), bg="#00AE3D", fg="yellow")#create win score label display the winning score of the player
 win_score_label.place(x=360, y=360)#position of win score label
-Button(frame_gamewin, text="Continue", font=("tahoma", 12), bg="#001111", fg="yellow", command=lambda: switch_to_frame(frame_level)).place(x=360, y=460)#creates continue button to return to level selection screen
+Button(frame_gamewin, text="Continue", font=("poppins", 12), bg="#2E80E5", fg="yellow", command=lambda: switch_to_frame(frame_level)).place(x=360, y=460)#creates continue button to return to level selection screen
 frame_gamewin.place(x=0, y=0, width=800, height=600)#position of continue button
 
 
 # STARTING THE GAME
 switch_to_frame(frame_welcome)# Show welcome screen first
 root.mainloop() # Runs the game 
+
+
+#REFERENCE
+#Love, D. (2018) Tkinter GUI Programming by Example. Birmingham: Packt Publishing.
+#Moore, A.D. (2021) Python GUI Programming with Tkinter: Design and build functional and user-friendly GUI applications. 2nd edn. Birmingham: Packt Publishing.
