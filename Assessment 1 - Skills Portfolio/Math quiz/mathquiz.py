@@ -259,6 +259,4 @@ switch_to_frame(frame_welcome)# Show welcome screen first
 root.mainloop() # Runs the game 
 
 
-#REFERENCE
-#Love, D. (2018) Tkinter GUI Programming by Example. Birmingham: Packt Publishing.
-#Moore, A.D. (2021) Python GUI Programming with Tkinter: Design and build functional and user-friendly GUI applications. 2nd edn. Birmingham: Packt Publishing.
+

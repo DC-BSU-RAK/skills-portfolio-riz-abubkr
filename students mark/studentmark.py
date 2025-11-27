@@ -3,7 +3,7 @@ from tkinter import*  #import tkinter module
 from tkinter import ttk # import themed tkinter widgets
 
 # FILE PATH
-DATA_FILE = "Assessment 1 - Skills Portfolio/A1 - Resources/Random jokes/students mark/studentMarks.txt"
+DATA_FILE = "students mark/studentMarks.txt"
 
 # SAFE INTEGER PARSER
 def parse_int_safe(s, default=0):#safely convert string to integer, return default if fails
