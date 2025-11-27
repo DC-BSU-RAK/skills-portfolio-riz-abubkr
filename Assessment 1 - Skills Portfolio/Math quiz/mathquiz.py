@@ -1,30 +1,30 @@
 
 # IMPORTING REQUIRED LIBRARIES
-from tkinter import *          # import tkinter module
+from tkinter import * # import tkinter module
 from PIL import ImageTk, Image # import pil module(for images)
-import random                  # import random(for numbers)
-import time                    # import time (for time)
+import random # import random(for numbers)
+import time# import time (for time)
  
 
 # MAIN WINDOW SETUP
-root = Tk()                          # Creates the output window
-root.title("Math Quiz Game")         # Creates a title in the output
-root.geometry("800x600")             # Creates a output Window of size 800 x 600
-root.resizable(False, False)         # Output Window size is fixed
-def switch_to_frame(frame):          # Function to switch between frames
+root = Tk() # Creates the output window
+root.title("Math Quiz Game")# Creates a title in the output
+root.geometry("800x600")# Creates a output Window of size 800 x 600
+root.resizable(False, False)# Output Window size is fixed
+def switch_to_frame(frame): # Function to switch between frames
     frame.tkraise()
 
 
 # GAME VARIABLES
-score = 0                   # store player score
-lives = 3                   # store player lives (starts with 3)
-attempts = 0                # store number of wrong attempts for one question
-correct_answer = None       # store the correct answer for the current question
-current_level = ""          # store the selected level (easy,moderate, difficult)
-question_count = 0          # store how many questions have been asked
-MAX_QUESTIONS = 5           # store total number of questions per level
-lives_expired_time = None   # store the time when lives reached zero
-game_result = ""            # store game result (won or lost)
+score = 0 # store player score
+lives = 3# store player lives (starts with 3)
+attempts = 0 # store number of wrong attempts for one question
+correct_answer = None# store the correct answer for the current question
+current_level = "" # store the selected level (easy,moderate, difficult)
+question_count = 0# store how many questions have been asked
+MAX_QUESTIONS = 5  # store total number of questions per level
+lives_expired_time = None # store the time when lives reached zero
+game_result = "" # store game result (won or lost)
 
 
 # STARTING QUIZ FOR SELECTED LEVEL
@@ -174,11 +174,11 @@ def restart_game():# creating a function named restart_game that brings the play
 # Image.open() opens the image file 
 # resize() changes it to fit the window (800x600)
 # ImageTk.PhotoImage() converts the image so it can be displayed in Tkinter
-bg_welcome = ImageTk.PhotoImage(Image.open("Assessment 1 - Skills Portfolio/Math quiz/images/background 1.png.jpeg").resize((800, 600)))
-bg_level   = ImageTk.PhotoImage(Image.open("Assessment 1 - Skills Portfolio/Math quiz/background 3.png.jpeg").resize((800, 600)))
-bg_quiz    = ImageTk.PhotoImage(Image.open("Assessment 1 - Skills Portfolio/Math quiz/images/background 2.png.jpeg").resize((800, 600)))
-bg_gameover = ImageTk.PhotoImage(Image.open("Assessment 1 - Skills Portfolio/Math quiz/background image4.png.jpeg").resize((800, 600)))
-bg_gamewin = ImageTk.PhotoImage(Image.open("Assessment 1 - Skills Portfolio/Math quiz/backgorund image5.png.jpeg").resize((800, 600)))
+bg_welcome = ImageTk.PhotoImage(Image.open("Assessment 1 - Skills Portfolio/Math quiz/images/mathquizwelcome.jpeg").resize((800, 600)))
+bg_level   = ImageTk.PhotoImage(Image.open("Assessment 1 - Skills Portfolio/Math quiz/mathquizdiffculty.jpeg").resize((800, 600)))
+bg_quiz    = ImageTk.PhotoImage(Image.open("Assessment 1 - Skills Portfolio/Math quiz/images/mathquiz1.jpeg").resize((800, 600)))
+bg_gameover = ImageTk.PhotoImage(Image.open("Assessment 1 - Skills Portfolio/Math quiz/mathquizgameover.jpeg").resize((800, 600)))
+bg_gamewin = ImageTk.PhotoImage(Image.open("Assessment 1 - Skills Portfolio/Math quiz/mathquizwin.jpeg").resize((800, 600)))
 
 
 # FRAME 1: WELCOME SCREEN
