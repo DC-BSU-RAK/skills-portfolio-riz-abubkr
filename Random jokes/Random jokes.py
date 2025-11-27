@@ -5,7 +5,7 @@ import random  # Import random to select a random joke
 #Loading and Preparing Joke Data From the File
 def load_jokes():
     jokes = [] # Empty list to store jokes 
-    with open("Random jokes/randomJokes.txt", "r") as file_handler: # Opening the text file 
+    with open("Random jokes/Random jokes.py", "r") as file_handler: # Opening the text file 
         lines = file_handler.readlines()   # Read all lines from file into a list
         for line in lines: # create loop for every line in the file
             line = line.strip() # Delete extra space
@@ -40,7 +40,7 @@ root.config(bg="#FFFFFF") # Set background color of window
 root.resizable(False, False)  # Output Window size is fixed
 
 #ADD BACKGROUND IMAGE
-bg_img = Image.open("Assessment 1 - Skills Portfolio/A1 - Resources/Random jokes/randomjokes.jpeg")
+bg_img = Image.open("Random jokes/randomjokes.jpeg")
 bg_img = bg_img.resize((500, 300)) # resize to window size
 bg_image = ImageTk.PhotoImage(bg_img)
 bg_label = Label(root, image=bg_image)
